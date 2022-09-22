@@ -18,6 +18,9 @@
             <th>{{barang.deskripsi}}</th>
         </tr>
     {% endfor %}
+   
+   
 </table>
-
+<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
