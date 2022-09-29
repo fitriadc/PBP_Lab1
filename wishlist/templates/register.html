@@ -6,9 +6,9 @@
 
 {% block content %}  
 
-<div class = "login">
+<div class="login d-flex flex-column justify-content-center align-items-center">
     
-    <h1>Formulir Registrasi</h1>  
+    <h1 class="m-4 fw-bold text-center">Formulir Registrasi</h1>  
 
         <form method="POST" >  
             {% csrf_token %}  
@@ -16,7 +16,7 @@
                 {{ form.as_table }}  
                 <tr>  
                     <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    <td><input class="mt-4 btn btn-outline-primary" type="submit" name="submit" value="Daftar"/></td>  
                 </tr>  
             </table>  
         </form>

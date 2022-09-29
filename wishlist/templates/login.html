@@ -6,26 +6,27 @@
 
 {% block content %}
 
-<div class = "login">
+<div class = "login d-flex flex-column justify-content-center align-items-center">
 
-    <h1>Login</h1>
+    <h1 class="m-4 fw-bold text-center">Welcome to Wishlist App!</h1>
+    <h1 class=" fw-normal text-center">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
         <table>
-            <tr>
-                <td>Username: </td>
+            <tr class="d-flex flex-column">
+                <td class="fw-bold">Username: </td>
                 <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
             </tr>
                     
-            <tr>
-                <td>Password: </td>
+            <tr class="d-flex flex-column">
+                <td class="fw-bold">Password: </td>
                 <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
 
-            <tr>
+            <tr class="d-flex flex-column align-items-center">
                 <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                <td><input class="btn btn-outline-primary m-4 login_btn" type="submit" value="Login"></td>
             </tr>
         </table>
     </form>
