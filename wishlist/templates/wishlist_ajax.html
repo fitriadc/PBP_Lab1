@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+<script>
+$(document).ready(function () {
+    $("/wishlist/json/").submit(function (data,status) {
+      let content = `
+                <tr class="table-header">
+                    <th>Nama Barang</th>
+                    <th>Harga Barang</th>
+                    <th>Deskripsi</th>
+                </tr>
+            `;
+            for (let i = 0; i < data.length; i++) {
+                content += `
+                    <tr class="table-body">
+                        <td>${data[i].fields.nama_barang}</td>
+                        <td>${data[i].fields.harga_barang}</td>
+                        <td>${data[i].fields.deskripsi}</td>
+                    </tr>
+                `;
+            }
+            $('.content').html(content);
+        });
+        $('.submit-button').click(function(){
+            const namaBarang = $('.nama-barang').val();
+            const hargaBarang = $('.harga-barang').val();
+            const deskripsi = $('.deskripsi').val();
+            $.post('/wishlist/ajax/submit/', {
+                nama_barang: namaBarang,
+                harga_barang: hargaBarang,
+                deskripsi: deskripsi
+            }, function(){
+                alert('post success');
+            })
+    });
+  });
+</script>
+
+<div class="m-5 d-flex flex-column justify-content-center align-items-center"></div>
+<h1 class="m-4 fw-bold text-center"> See Your Wishlist 😉 </h1>
+<div class="container">
+<table class="table table-bordered table-hover">
+    <tr class="table-info">
+    <th class="fw-bold text-center" >Nama Barang</th>
+    <th class="fw-bold text-center">Harga Barang</th>
+    <th class="fw-bold text-center">Deskripsi</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for barang in list_barang %}
+        <tr>
+            <th class="fw-normal">{{barang.nama_barang}}</th>
+            <th class="fw-normal">{{barang.harga_barang}}</th>
+            <th class="fw-normal">{{barang.deskripsi}}</th>
+        </tr>
+    {% endfor %}
+
+
+</div>
+</table>
+<h5 class="fw-bold mb-2" >Sesi terakhir login: <span class="fw-normal">{{ last_login }}</span></h5>
+
+<h2 class="m-4 fw-bold text-center"> Add New Wishlist 😉 </h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    <div id="nama_barang" class="form-group">
+      <label for="nama_barang">Nama Barang : </label>
+      <input
+        type="text"
+        class="form-control"
+        id="nama_barang"
+        name="nama_barang"
+        placeholder="Nama Barang"
+      />
+    </div>
+
+    <div id="harga_barang" class="form-group">
+      <label for="harga_barang">Harga Barang : </label>
+      <input
+        type="text"
+        class="form-control"
+        id="harga_barang"
+        name="harga_barang"
+        placeholder="Harga Barang"
+      />
+    </div>
+
+    <div id="deskripsi" class="form-group">
+      <label for="deskripsi">Deskripsi Barang :</label>
+      <input
+        type="text"
+        class="form-control"
+        id="deskripsi"
+        name="deskripsi"
+        placeholder="Deskripsi"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+      Submit
+    </button>
+  </form>
+</div>
+{% endblock content %}

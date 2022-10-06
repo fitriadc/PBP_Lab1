@@ -1,5 +1,5 @@
 from django.urls import path
-from wishlist.views import show_wishlist
+from wishlist.views import show_wishlist, show_wishlist_ajax, submit_data_ajax
 # sesuaikan dengan nama fungsi yang dibuat
 from wishlist.views import data_show_xml
 from wishlist.views import data_show_json
@@ -28,4 +28,6 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     # sesuaikan dengan nama fungsi yang dibuat
     path('logout/', logout_user, name='logout'),
+    path('ajax/', show_wishlist_ajax, name='show_wishlist_ajax'),
+    path('ajax/submit/', submit_data_ajax, name='submit_data_ajax'),
 ]
